@@ -70,7 +70,3 @@ class MainWindow(QWidget):
         self.i.show()
         
 
-app = QApplication(sys.argv)
-win = MainWindow()
-win.show()
-exit(app.exec())
