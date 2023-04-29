@@ -115,8 +115,8 @@ class AddContact(QWidget):
     def Save_contact(self): 
         db = DBHandler()
         day = self.day.currentIndex() + 1
-        month = self.month.itemText()
-        year = self.year.itemText()
+        month = self.month.currentIndex() + 1
+        year = self.year.currentText()
         first = self.first.text()
         last = self.last.text()
         gender = self.gender.currentText()
