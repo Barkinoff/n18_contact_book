@@ -37,12 +37,13 @@ class DBHandler:
 
         self.__connection.commit()
 
-    def get_all(self) -> dict:
+    def get_all(self,first,last) -> dict:
         query = f"""SELECT * FROM contacts
             LEFT JOIN contact_phones ON contacts.id = contact_phones.contact_id
             LEFT JOIN contact_emails ON contacts.id = contact_emails.contact_id
             LEFT JOIN contact_addresses ON contacts.id = contact_addresses.contact_id
-            LEFT JOIN contact_socials ON contacts.id = contact_socials.contact_id;"""
+            LEFT JOIN contact_socials ON contacts.id = contact_socials.contact_id
+            Where first_name = '{first}' and last_name = '{last}';"""
 
         cursor = self.__connection.cursor()
         cursor.execute(query)

@@ -66,7 +66,8 @@ class MainWindow(QWidget):
     
     def info(self):
         name = self.contact_list.currentItem().text()
-        self.i = Contact_info(name)
+        first,last = map(str,name.split(" "))
+        self.i = Contact_info(first,last)
         self.i.show()
         
 

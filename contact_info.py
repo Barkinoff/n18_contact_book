@@ -4,7 +4,7 @@ from PyQt6.QtGui import *
 
 class Contact_info(QWidget):
     
-    def __init__(self,first) -> None:
+    def __init__(self,first,last) -> None:
         super().__init__()
 
         self.setWindowTitle("Contacts Info")
@@ -15,8 +15,13 @@ class Contact_info(QWidget):
         self.v_box.addWidget(self.list)
         self.setLayout(self.v_box)
         self.first = first
-        self.get_one(self.first)
+        self.last = last
+        self.get_one(self.first,self.last)
         self.set_typeText(self.list,10)
+        self.cancel = QPushButton("Cancel")
+        self.cancel.setStyleSheet("background: red")
+        self.v_box.addWidget(self.cancel)
+        self.cancel.clicked.connect(self.close)
     
     def set_typeText(self,obj,s):
         #obj.setFond(QFont("Italic",s))
@@ -35,8 +40,7 @@ class Contact_info(QWidget):
                                   "background : green;"
                                   "}"
                                   )
-    def get_one(self,first):
-        for k,v in self.__db.get_all().items():
-                if first in str(v):
-                    self.list.addItem(f"{k} | {v}")
+    def get_one(self,first,last):
+        for k,v in self.__db.get_all(first,last).items():
+                self.list.addItem(f"{k} | {v}")
  
